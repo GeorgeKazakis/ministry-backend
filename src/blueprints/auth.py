@@ -5,6 +5,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from src.config import GOOGLE_AUDIENCE
 from src.models.user import User
 import json
+from src.models.psped.log import PspedSystemLog as Log
 
 
 auth = Blueprint("auth", __name__)
@@ -40,7 +41,10 @@ def google_auth():
         ).save()
 
     user = User.get_user_by_email(id_info["email"]).to_mongo_dict()
-    access_token = create_access_token(identity=id_info["email"])
+    additional_claims = {"roles": user["roles"]}
+    access_token = create_access_token(identity=id_info["email"], additional_claims=additional_claims)
+
+    Log(user_id=id_info["email"], action="login", data={"email": id_info["email"]}).save()
 
     return Response(json.dumps({"accessToken": access_token, "user": user}), status=200)
 
