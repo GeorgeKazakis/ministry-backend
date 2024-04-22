@@ -18,30 +18,33 @@ from src.blueprints.armodiotites import remit
 from src.blueprints.legal_provision import legal_provision
 from src.blueprints.legal_act import legal_act
 
+
 from src.blueprints.upload import upload
 
-from src.config import (
-    MONGO_HOST,
-    MONGO_PORT,
-    MONGO_APOGRAFI_DB,
-    MONGO_PSPED_DB,
-    MONGO_USERNAME,
-    MONGO_PASSWORD,
-    MONGO_AUTHENTICATION_SOURCE,
-    JWT_SECRET_KEY,
-    UPLOAD_FOLDER,
-    MAX_CONTENT_LENGTH,
-)
+from src.blueprints.search import search
+
+# from src.config import (
+#     MONGO_HOST,
+#     MONGO_PORT,
+#     MONGO_APOGRAFI_DB,
+#     MONGO_PSPED_DB,
+#     MONGO_USERNAME,
+#     MONGO_PASSWORD,
+#     MONGO_AUTHENTICATION_SOURCE,
+#     JWT_SECRET_KEY,
+#     UPLOAD_FOLDER,
+#     MAX_CONTENT_LENGTH,
+# )
 
 
 app = Flask(__name__)
 
 jwt = JWTManager(app)
-app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
+app.config["JWT_SECRET_KEY"] = "JWT_SECRET_KEY"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
 
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
+# app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+# app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 
 
 @app.errorhandler(413)
@@ -49,25 +52,25 @@ def too_large(e):
     return make_response(jsonify(message="File is too large"), 413)
 
 
-connect(
-    host=MONGO_HOST,
-    port=MONGO_PORT,
-    username=MONGO_USERNAME,
-    password=MONGO_PASSWORD,
-    authentication_source=MONGO_AUTHENTICATION_SOURCE,
-    db=MONGO_APOGRAFI_DB,
-    alias=MONGO_APOGRAFI_DB,
-)
+# connect(
+#     host=MONGO_HOST,
+#     port=MONGO_PORT,
+#     username=MONGO_USERNAME,
+#     password=MONGO_PASSWORD,
+#     authentication_source=MONGO_AUTHENTICATION_SOURCE,
+#     db=MONGO_APOGRAFI_DB,
+#     alias=MONGO_APOGRAFI_DB,
+# )
 
-connect(
-    host=MONGO_HOST,
-    port=MONGO_PORT,
-    username=MONGO_USERNAME,
-    password=MONGO_PASSWORD,
-    authentication_source=MONGO_AUTHENTICATION_SOURCE,
-    db=MONGO_PSPED_DB,
-    alias=MONGO_PSPED_DB,
-)
+# connect(
+#     host=MONGO_HOST,
+#     port=MONGO_PORT,
+#     username=MONGO_USERNAME,
+#     password=MONGO_PASSWORD,
+#     authentication_source=MONGO_AUTHENTICATION_SOURCE,
+#     db=MONGO_PSPED_DB,
+#     alias=MONGO_PSPED_DB,
+# )
 
 # CORS configuration
 cors = CORS(

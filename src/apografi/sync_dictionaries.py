@@ -1,5 +1,5 @@
 from src.models.apografi.dictionary import Dictionary
-from src.models.utils import Log
+# from src.models.utils import Log
 from src.apografi.constants import APOGRAFI_DICTIONARIES, APOGRAFI_DICTIONARIES_URL
 from src.apografi.utils import apografi_get
 from deepdiff import DeepDiff
@@ -41,17 +41,17 @@ def sync_apografi_dictionaries():
                         for key, value in doc.items():
                             setattr(existing, key, value)
                         existing.save()
-                        Log(
-                            entity="dictionary",
-                            action="update",
-                            doc_id=doc_id,
-                            value=diff,
-                        ).save()
+                        # Log(
+                        #     entity="dictionary",
+                        #     action="update",
+                        #     doc_id=doc_id,
+                        #     value=diff,
+                        # ).save()
                 else:
                     Dictionary(**doc).save()
-                    Log(
-                        entity="dictionary", action="insert", doc_id=doc_id, value=doc
-                    ).save()
+                    # Log(
+                    #     entity="dictionary", action="insert", doc_id=doc_id, value=doc
+                    # ).save()
             bar()
 
     print("Τέλος συγχρονισμού λεξικών από την Απογραφή.")

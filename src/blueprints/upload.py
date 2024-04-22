@@ -4,7 +4,7 @@ import json
 import os
 import uuid
 from src.models.upload import FileUpload
-from src.config import ALLOWED_EXTENSIONS
+# from src.config import ALLOWED_EXTENSIONS
 from bson import ObjectId
 
 upload = Blueprint("upload", __name__)

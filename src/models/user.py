@@ -1,4 +1,4 @@
-from src.config import MONGO_PSPED_DB
+# from src.config import MONGO_PSPED_DB
 from src.models.apografi.organization import Organization
 from src.models.apografi.organizational_unit import OrganizationalUnit
 import mongoengine as me
@@ -21,7 +21,7 @@ class User(me.Document):
     provider = me.StringField(required=True, choices=["GOOGLE"], default="GOOGLE")
     roles = me.EmbeddedDocumentListField(UserRole, default=[UserRole(role="READER")])
 
-    meta = {"collection": "users", "db_alias": MONGO_PSPED_DB}
+    meta = {"collection": "users", "db_alias": "MONGO_PSPED_DB"}
 
     def to_mongo_dict(self):
         mongo_dict = self.to_mongo().to_dict()

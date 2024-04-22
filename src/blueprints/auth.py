@@ -2,7 +2,7 @@ from flask import Blueprint, request, Response
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from src.config import GOOGLE_AUDIENCE
+# from src.config import GOOGLE_AUDIENCE
 from src.models.user import User
 import json
 from src.models.psped.log import PspedSystemLog as Log

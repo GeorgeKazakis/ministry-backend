@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ministry-backend"
+version = "0.1.0"
+description = ""
+authors = ["tsak1998 <tsakalis.pantelis@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ministry_backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+elasticsearch = "^8.13.0"
+flask-jwt-extended = "^4.6.0"
+google-auth = "^2.29.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
